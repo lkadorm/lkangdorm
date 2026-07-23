@@ -68,7 +68,6 @@
             color: var(--mint-green);
         }
 
-        /* Active underline effect matching the screenshot */
         .nav-links a.active::after {
             content: '';
             position: absolute;
@@ -266,12 +265,11 @@
 </head>
 <body>
 
-<!-- Hyperlink Navigation Header -->
+<!-- Navigation Header -->
 <nav class="navbar">
     <ul class="nav-links">
         <li><a href="#" class="active">HOME</a></li>
-        <li><a href="#rooms">OUR ROOMS</a></li>
-        <li><a href="#facilities">FACILITIES</a></li>
+        <li><a href="#rooms-facilities">ROOMS &amp; FACILITIES</a></li>
         <li><a href="#cta">RATES</a></li>
         <li><a href="#location">LOCATION</a></li>
         <li><a href="#contact">CONTACT</a></li>
@@ -285,46 +283,49 @@
         <h1>Workers' Dormitory<br>Space Available</h1>
     </header>
 
-    <!-- Images Gallery -->
-<section class="gallery">
-    <div class="gallery-item">
-        <img src="room.jpeg" alt="Dormitory Room">
-    </div>
-    <div class="gallery-item">
-        <img src="toilet.jpeg" alt="En-suite Toilet">
-    </div>
-    <div class="gallery-item">
-        <img src="laundry.jpeg" alt="Laundry Area">
-    </div>
-</section>
+    <!-- Combined Section: Rooms & Facilities -->
+    <div id="rooms-facilities">
+        <!-- Images Gallery -->
+        <section class="gallery">
+            <div class="gallery-item">
+                <img src="room.jpeg" alt="Bedrooms Photo">
+            </div>
+            <div class="gallery-item">
+                <img src="toilet.jpeg" alt="Bathroom Photo">
+            </div>
+            <div class="gallery-item">
+                <img src="laundry.jpeg" alt="Laundry Photo">
+            </div>
+        </section>
 
-    <!-- Features -->
-    <section id="facilities" class="features">
-        <div class="feature-card">
-            <div class="feature-icon"><i class="fa-solid fa-bed"></i></div>
-            <div class="feature-text">120 beds across<br>11 rooms</div>
-        </div>
-        <div class="feature-card">
-            <div class="feature-icon"><i class="fa-solid fa-plug"></i></div>
-            <div class="feature-text">Personal storage &amp;<br>power point for each bed</div>
-        </div>
-        <div class="feature-card">
-            <div class="feature-icon"><i class="fa-solid fa-users"></i></div>
-            <div class="feature-text">12 beds per room with<br>en-suite toilet</div>
-        </div>
-        <div class="feature-card">
-            <div class="feature-icon"><i class="fa-solid fa-soap"></i></div>
-            <div class="feature-text">Laundry area provided</div>
-        </div>
-        <div class="feature-card">
-            <div class="feature-icon"><i class="fa-solid fa-wind"></i></div>
-            <div class="feature-text">Spacious &amp;<br>well-ventilated rooms</div>
-        </div>
-        <div class="feature-card">
-            <div class="feature-icon"><i class="fa-solid fa-shield-halved"></i></div>
-            <div class="feature-text">Fully compliant with<br>FEDA requirements</div>
-        </div>
-    </section>
+        <!-- Features -->
+        <section class="features">
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fa-solid fa-bed"></i></div>
+                <div class="feature-text">120 beds across<br>11 rooms</div>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fa-solid fa-plug"></i></div>
+                <div class="feature-text">Personal storage &amp;<br>power point for each bed</div>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fa-solid fa-users"></i></div>
+                <div class="feature-text">12 beds per room with<br>en-suite toilet</div>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fa-solid fa-soap"></i></div>
+                <div class="feature-text">Laundry area provided</div>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fa-solid fa-wind"></i></div>
+                <div class="feature-text">Spacious &amp;<br>well-ventilated rooms</div>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fa-solid fa-shield-halved"></i></div>
+                <div class="feature-text">Fully compliant with<br>FEDA requirements</div>
+            </div>
+        </section>
+    </div>
 
     <!-- Call to Action Banner -->
     <div id="cta" class="cta-banner">
