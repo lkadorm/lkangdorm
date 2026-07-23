@@ -8,8 +8,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
-            --primary-blue: #0d3b66;
+            --primary-blue: #09172A;
             --accent-blue: #0056b3;
+            --mint-green: #38ef7d;
             --light-bg: #f8f9fa;
             --text-color: #333333;
         }
@@ -21,16 +22,86 @@
             font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
         }
 
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
             background-color: var(--light-bg);
             color: var(--text-color);
             line-height: 1.6;
-            padding: 20px 10px;
+        }
+
+        /* Navigation Bar */
+        .navbar {
+            background-color: var(--primary-blue);
+            padding: 15px 30px;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: color 0.3s ease;
+            position: relative;
+            padding-bottom: 5px;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--mint-green);
+        }
+
+        /* Active underline effect matching the screenshot */
+        .nav-links a.active::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: var(--mint-green);
+        }
+
+        .btn-book {
+            background-color: #2ecc71;
+            background: linear-gradient(135deg, #2ecc71, #1abc9c);
+            color: #ffffff !important;
+            padding: 10px 22px !important;
+            border-radius: 6px;
+            font-weight: 800 !important;
+            box-shadow: 0 4px 10px rgba(46, 204, 113, 0.3);
+            transition: transform 0.2s ease, box-shadow 0.2s ease !important;
+        }
+
+        .btn-book:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(46, 204, 113, 0.4);
+        }
+
+        .btn-book::after {
+            display: none !important;
         }
 
         .container {
             max-width: 900px;
-            margin: 0 auto;
+            margin: 30px auto;
             background: #ffffff;
             border: 4px solid var(--primary-blue);
             border-radius: 8px;
@@ -38,12 +109,13 @@
             box-shadow: 0 4px 15px rgba(0,0,0,0.1);
         }
 
-        /* Header */
+        /* Header Banner */
         header {
             background-color: var(--primary-blue);
             color: white;
             text-align: center;
-            padding: 25px 15px;
+            padding: 30px 15px;
+            border-top: 1px solid rgba(255,255,255,0.1);
         }
 
         header h1 {
@@ -114,7 +186,7 @@
             color: var(--primary-blue);
         }
 
-        /* Call to Action */
+        /* Call to Action Banner */
         .cta-banner {
             text-align: center;
             padding: 20px;
@@ -182,7 +254,10 @@
             line-height: 1.2;
         }
 
-        @media (max-width: 600px) {
+        @media (max-width: 768px) {
+            .navbar { justify-content: center; padding: 15px 10px; }
+            .nav-links { gap: 12px; flex-wrap: wrap; justify-content: center; }
+            .nav-links a { font-size: 0.8rem; }
             header h1 { font-size: 1.6rem; }
             .cta-banner h2 { font-size: 1.3rem; }
             .contact-section { flex-direction: column; align-items: flex-start; }
@@ -191,8 +266,21 @@
 </head>
 <body>
 
+<!-- Hyperlink Navigation Header -->
+<nav class="navbar">
+    <ul class="nav-links">
+        <li><a href="#" class="active">HOME</a></li>
+        <li><a href="#rooms">OUR ROOMS</a></li>
+        <li><a href="#facilities">FACILITIES</a></li>
+        <li><a href="#cta">RATES</a></li>
+        <li><a href="#location">LOCATION</a></li>
+        <li><a href="#contact">CONTACT</a></li>
+        <li><a href="#contact" class="btn-book">BOOK NOW</a></li>
+    </ul>
+</nav>
+
 <div class="container">
-    <!-- Header -->
+    <!-- Header Banner -->
     <header>
         <h1>Workers' Dormitory<br>Space Available</h1>
     </header>
@@ -200,18 +288,18 @@
     <!-- Images Gallery -->
 <section class="gallery">
     <div class="gallery-item">
-        <img src="room.jpeg" alt="Dormitory Room">
+        <img src="room.jpg" alt="Dormitory Room">
     </div>
     <div class="gallery-item">
-        <img src="toilet.jpeg" alt="En-suite Toilet">
+        <img src="toilet.jpg" alt="En-suite Toilet">
     </div>
     <div class="gallery-item">
-        <img src="laundry.jpeg" alt="Laundry Area">
+        <img src="laundry.jpg" alt="Laundry Area">
     </div>
 </section>
 
     <!-- Features -->
-    <section class="features">
+    <section id="facilities" class="features">
         <div class="feature-card">
             <div class="feature-icon"><i class="fa-solid fa-bed"></i></div>
             <div class="feature-text">120 beds across<br>11 rooms</div>
@@ -239,18 +327,18 @@
     </section>
 
     <!-- Call to Action Banner -->
-    <div class="cta-banner">
+    <div id="cta" class="cta-banner">
         <h2>Book Now for September &amp; October!</h2>
     </div>
 
     <!-- Contact & Location -->
-    <section class="contact-section">
+    <section id="contact" class="contact-section">
         <div class="contact-info">
             <p><strong>FOR BOOKINGS &amp; ENQUIRIES</strong></p>
             <p>CALL: <a href="tel:64538288">64538288</a> / <a href="tel:83074227">83074227</a></p>
             <p>EMAIL: <a href="mailto:maung@LKANGCO.sg">maung@LKANGCO.sg</a></p>
         </div>
-        <div class="location-info">
+        <div id="location" class="location-info">
             <div class="location-icon"><i class="fa-solid fa-location-dot"></i></div>
             <div class="location-text">
                 Tagore<br>Upper Thomson
