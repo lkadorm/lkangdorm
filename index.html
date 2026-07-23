@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Workers' Dormitory Space Available | Tagore Upper Thomson</title>
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-blue: #0d3b66;
+            --accent-blue: #0056b3;
+            --light-bg: #f8f9fa;
+            --text-color: #333333;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: var(--light-bg);
+            color: var(--text-color);
+            line-height: 1.6;
+            padding: 20px 10px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: #ffffff;
+            border: 4px solid var(--primary-blue);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        /* Header */
+        header {
+            background-color: var(--primary-blue);
+            color: white;
+            text-align: center;
+            padding: 25px 15px;
+        }
+
+        header h1 {
+            font-size: 2.2rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 800;
+        }
+
+        /* Photo Gallery */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            padding: 20px;
+            background-color: #eef2f5;
+        }
+
+        .gallery-item {
+            height: 250px;
+            background-color: #ccc;
+            border-radius: 6px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #666;
+            font-weight: bold;
+            border: 1px solid #ddd;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Features Section */
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            padding: 25px;
+        }
+
+        .feature-card {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .feature-icon {
+            width: 55px;
+            height: 55px;
+            background-color: var(--accent-blue);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            flex-shrink: 0;
+        }
+
+        .feature-text {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--primary-blue);
+        }
+
+        /* Call to Action */
+        .cta-banner {
+            text-align: center;
+            padding: 20px;
+            background-color: #f0f4f8;
+            border-top: 2px dashed #cbd5e1;
+            border-bottom: 2px dashed #cbd5e1;
+            margin: 10px 0;
+        }
+
+        .cta-banner h2 {
+            color: var(--accent-blue);
+            font-size: 1.8rem;
+            text-transform: uppercase;
+            font-weight: 800;
+        }
+
+        /* Contact Details */
+        .contact-section {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            padding: 25px;
+            gap: 20px;
+        }
+
+        .contact-info p {
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+        }
+
+        .contact-info strong {
+            color: var(--primary-blue);
+        }
+
+        .contact-info a {
+            color: var(--accent-blue);
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .contact-info a:hover {
+            text-decoration: underline;
+        }
+
+        .location-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: #eef2f5;
+            padding: 15px 20px;
+            border-radius: 8px;
+        }
+
+        .location-icon {
+            font-size: 2.2rem;
+            color: #d9534f;
+        }
+
+        .location-text {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: var(--primary-blue);
+            text-transform: uppercase;
+            line-height: 1.2;
+        }
+
+        @media (max-width: 600px) {
+            header h1 { font-size: 1.6rem; }
+            .cta-banner h2 { font-size: 1.3rem; }
+            .contact-section { flex-direction: column; align-items: flex-start; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <!-- Header -->
+    <header>
+        <h1>Workers' Dormitory<br>Space Available</h1>
+    </header>
+
+    <!-- Images Gallery -->
+    <!-- Replace src="#" with your image URLs if hosted externally -->
+    <section class="gallery">
+        <div class="gallery-item">
+            <i class="fa-solid fa-bed fa-2x"></i>
+            <span style="margin-left: 10px;">Bedrooms Photo</span>
+        </div>
+        <div class="gallery-item">
+            <i class="fa-solid fa-shower fa-2x"></i>
+            <span style="margin-left: 10px;">Bathroom Photo</span>
+        </div>
+        <div class="gallery-item">
+            <i class="fa-solid fa-soap fa-2x"></i>
+            <span style="margin-left: 10px;">Laundry Photo</span>
+        </div>
+    </section>
+
+    <!-- Features -->
+    <section class="features">
+        <div class="feature-card">
+            <div class="feature-icon"><i class="fa-solid fa-bed"></i></div>
+            <div class="feature-text">120 beds across<br>11 rooms</div>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon"><i class="fa-solid fa-plug"></i></div>
+            <div class="feature-text">Personal storage &amp;<br>power point for each bed</div>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon"><i class="fa-solid fa-users"></i></div>
+            <div class="feature-text">12 beds per room with<br>en-suite toilet</div>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon"><i class="fa-solid fa-soap"></i></div>
+            <div class="feature-text">Laundry area provided</div>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon"><i class="fa-solid fa-wind"></i></div>
+            <div class="feature-text">Spacious &amp;<br>well-ventilated rooms</div>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon"><i class="fa-solid fa-shield-halved"></i></div>
+            <div class="feature-text">Fully compliant with<br>FEDA requirements</div>
+        </div>
+    </section>
+
+    <!-- Call to Action Banner -->
+    <div class="cta-banner">
+        <h2>Book Now for September &amp; October!</h2>
+    </div>
+
+    <!-- Contact & Location -->
+    <section class="contact-section">
+        <div class="contact-info">
+            <p><strong>FOR BOOKINGS &amp; ENQUIRIES</strong></p>
+            <p>CALL: <a href="tel:64538288">64538288</a> / <a href="tel:83074227">83074227</a></p>
+            <p>EMAIL: <a href="mailto:maung@LKANGCO.sg">maung@LKANGCO.sg</a></p>
+        </div>
+        <div class="location-info">
+            <div class="location-icon"><i class="fa-solid fa-location-dot"></i></div>
+            <div class="location-text">
+                Tagore<br>Upper Thomson
+            </div>
+        </div>
+    </section>
+</div>
+
+</body>
+</html>
