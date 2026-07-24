@@ -68,7 +68,6 @@
             color: var(--mint-green);
         }
 
-        /* Dynamic Active Underline Effect */
         .nav-links a.active::after {
             content: '';
             position: absolute;
@@ -93,10 +92,6 @@
         .btn-book:hover {
             transform: translateY(-2px);
             box-shadow: 0 6px 15px rgba(46, 204, 113, 0.4);
-        }
-
-        .btn-book::after {
-            display: none !important;
         }
 
         .container {
@@ -125,7 +120,7 @@
             font-weight: 800;
         }
 
-        /* Photo Gallery */
+        /* Photo Gallery Preview */
         .gallery {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -203,7 +198,7 @@
             font-weight: 800;
         }
 
-        /* Contact & Location Details */
+        /* Contact Details */
         .contact-section {
             display: grid;
             grid-template-columns: 2fr 1fr;
@@ -232,10 +227,6 @@
             color: var(--accent-blue);
             text-decoration: none;
             font-weight: bold;
-        }
-
-        .contact-info a:hover {
-            text-decoration: underline;
         }
 
         .location-info {
@@ -296,11 +287,7 @@
                 grid-template-columns: 1fr;
                 text-align: center;
             }
-            
-            .location-info {
-                margin: 0 auto;
-            }
-
+            .location-info { margin: 0 auto; }
             .qr-block {
                 border-left: none;
                 border-top: 2px dashed #cbd5e1;
@@ -315,71 +302,57 @@
 <!-- Navigation Header -->
 <nav class="navbar">
     <ul class="nav-links">
-        <li><a href="#home" class="nav-item active">HOME</a></li>
-        <li><a href="#rooms-facilities" class="nav-item">ROOMS &amp; FACILITIES</a></li>
-        <li><a href="#cta" class="nav-item">RATES</a></li>
-        <li><a href="#location-section" class="nav-item">LOCATION</a></li>
-        <li><a href="#contact" class="nav-item">CONTACT</a></li>
+        <li><a href="index.html" class="active">HOME</a></li>
+        <li><a href="rooms-facilities.html">ROOMS &amp; FACILITIES</a></li>
+        <li><a href="#cta">RATES</a></li>
+        <li><a href="#location-section">LOCATION</a></li>
+        <li><a href="#contact">CONTACT</a></li>
         <li><a href="#contact" class="btn-book">BOOK NOW</a></li>
     </ul>
 </nav>
 
 <div class="container" id="home">
-    <!-- Header Banner -->
     <header>
         <h1>Workers' Dormitory<br>Space Available</h1>
     </header>
 
-    <!-- Combined Section: Rooms & Facilities -->
-    <div id="rooms-facilities">
-        <!-- Images Gallery -->
-        <section class="gallery">
-            <div class="gallery-item">
-                <img src="room.jpeg" alt="Bedrooms Photo">
-            </div>
-            <div class="gallery-item">
-                <img src="toilet.jpeg" alt="Bathroom Photo">
-            </div>
-            <div class="gallery-item">
-                <img src="laundry.jpeg" alt="Laundry Photo">
-            </div>
-        </section>
+    <section class="gallery">
+        <div class="gallery-item"><img src="room.jpeg" alt="Bedrooms Photo"></div>
+        <div class="gallery-item"><img src="toilet.jpeg" alt="Bathroom Photo"></div>
+        <div class="gallery-item"><img src="laundry.jpeg" alt="Laundry Photo"></div>
+    </section>
 
-        <!-- Features -->
-        <section class="features">
-            <div class="feature-card">
-                <div class="feature-icon"><i class="fa-solid fa-bed"></i></div>
-                <div class="feature-text">120 beds across<br>11 rooms</div>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon"><i class="fa-solid fa-plug"></i></div>
-                <div class="feature-text">Personal storage &amp;<br>power point for each bed</div>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon"><i class="fa-solid fa-users"></i></div>
-                <div class="feature-text">12 beds per room with<br>en-suite toilet</div>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon"><i class="fa-solid fa-soap"></i></div>
-                <div class="feature-text">Laundry area provided</div>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon"><i class="fa-solid fa-wind"></i></div>
-                <div class="feature-text">Spacious &amp;<br>well-ventilated rooms</div>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon"><i class="fa-solid fa-shield-halved"></i></div>
-                <div class="feature-text">Fully compliant with<br>FEDA requirements</div>
-            </div>
-        </section>
-    </div>
+    <section class="features">
+        <div class="feature-card">
+            <div class="feature-icon"><i class="fa-solid fa-bed"></i></div>
+            <div class="feature-text">120 beds across<br>11 rooms</div>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon"><i class="fa-solid fa-plug"></i></div>
+            <div class="feature-text">Personal storage &amp;<br>power point for each bed</div>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon"><i class="fa-solid fa-users"></i></div>
+            <div class="feature-text">12 beds per room with<br>en-suite toilet</div>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon"><i class="fa-solid fa-soap"></i></div>
+            <div class="feature-text">Laundry area provided</div>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon"><i class="fa-solid fa-wind"></i></div>
+            <div class="feature-text">Spacious &amp;<br>well-ventilated rooms</div>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon"><i class="fa-solid fa-shield-halved"></i></div>
+            <div class="feature-text">Fully compliant with<br>FEDA requirements</div>
+        </div>
+    </section>
 
-    <!-- Call to Action Banner -->
     <div id="cta" class="cta-banner">
         <h2>Book Now for September &amp; October!</h2>
     </div>
 
-    <!-- Contact, Location & QR Section -->
     <section id="contact" class="contact-section">
         <div class="details-block">
             <div class="contact-info">
@@ -389,33 +362,16 @@
             </div>
             <div id="location-section" class="location-info">
                 <div class="location-icon"><i class="fa-solid fa-location-dot"></i></div>
-                <div class="location-text">
-                    Tagore<br>Upper Thomson
-                </div>
+                <div class="location-text">Tagore<br>Upper Thomson</div>
             </div>
         </div>
         
-        <!-- QR Code Block -->
         <div class="qr-block">
-            <img src="Dorm QR.jpg" alt="Scan QR Code" class="qr-image">
+            <img src="qr-code.png" alt="Scan QR Code" class="qr-image">
             <div class="qr-text">Scan for more details</div>
         </div>
     </section>
 </div>
-
-<!-- Script to handle dynamic active tab switching -->
-<script>
-    const navItems = document.querySelectorAll('.nav-item');
-
-    navItems.forEach(item => {
-        item.addEventListener('click', function() {
-            // Remove 'active' class from all links
-            navItems.forEach(link => link.classList.remove('active'));
-            // Add 'active' class to clicked link
-            this.classList.add('active');
-        });
-    });
-</script>
 
 </body>
 </html>
