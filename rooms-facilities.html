@@ -68,6 +68,7 @@
         .photo-card {
             background: #ffffff; border: 1px solid #e1e8ed; border-radius: 8px;
             overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.05); transition: transform 0.2s ease;
+            cursor: pointer;
         }
 
         .photo-card:hover { transform: translateY(-4px); }
@@ -78,6 +79,55 @@
             text-align: center; background-color: #f8f9fa; border-top: 1px solid #e1e8ed;
             text-transform: uppercase; font-size: 1rem;
         }
+
+        /* Modal / Lightbox Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.85);
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .modal-content {
+            max-width: 90%;
+            max-height: 85vh;
+            border-radius: 8px;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.5);
+            object-fit: contain;
+        }
+
+        .modal-caption {
+            position: absolute;
+            bottom: 25px;
+            color: #ffffff;
+            font-size: 1.2rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            background: rgba(0,0,0,0.6);
+            padding: 6px 16px;
+            border-radius: 4px;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 20px;
+            right: 35px;
+            color: #ffffff;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+
+        .close-modal:hover { color: var(--mint-green); }
 
         @media (max-width: 768px) {
             .navbar { justify-content: center; padding: 15px 10px; }
@@ -105,15 +155,59 @@
     </header>
 
     <div class="photo-grid">
-        <div class="photo-card"><img src="room1.jpeg" alt="Room 1"><div class="photo-title">Room 1</div></div>
-        <div class="photo-card"><img src="room2.jpeg" alt="Room 2"><div class="photo-title">Room 2</div></div>
-        <div class="photo-card"><img src="bed1.jpeg" alt="Bed 1"><div class="photo-title">Bed 1</div></div>
-        <div class="photo-card"><img src="corridor1.png" alt="Corridor 1"><div class="photo-title">Corridor 1</div></div>
-        <div class="photo-card"><img src="corridor2.png" alt="Corridor 2"><div class="photo-title">Corridor 2</div></div>
-        <div class="photo-card"><img src="corridor3.png" alt="Corridor 3"><div class="photo-title">Corridor 3</div></div>
-        <div class="photo-card"><img src="dining.png" alt="Dining Area"><div class="photo-title">Dining Area</div></div>
+        <div class="photo-card" onclick="openModal('room1.jpeg', 'Room 1')">
+            <img src="room1.jpeg" alt="Room 1">
+            <div class="photo-title">Room 1</div>
+        </div>
+        <div class="photo-card" onclick="openModal('room2.jpeg', 'Room 2')">
+            <img src="room2.jpeg" alt="Room 2">
+            <div class="photo-title">Room 2</div>
+        </div>
+        <div class="photo-card" onclick="openModal('bed1.jpeg', 'Bed 1')">
+            <img src="bed1.jpeg" alt="Bed 1">
+            <div class="photo-title">Bed 1</div>
+        </div>
+        <div class="photo-card" onclick="openModal('corridor1.png', 'Corridor 1')">
+            <img src="corridor1.png" alt="Corridor 1">
+            <div class="photo-title">Corridor 1</div>
+        </div>
+        <div class="photo-card" onclick="openModal('corridor2.png', 'Corridor 2')">
+            <img src="corridor2.png" alt="Corridor 2">
+            <div class="photo-title">Corridor 2</div>
+        </div>
+        <div class="photo-card" onclick="openModal('corridor3.png', 'Corridor 3')">
+            <img src="corridor3.png" alt="Corridor 3">
+            <div class="photo-title">Corridor 3</div>
+        </div>
+        <div class="photo-card" onclick="openModal('dining.png', 'Dining Area')">
+            <img src="dining.png" alt="Dining Area">
+            <div class="photo-title">Dining Area</div>
+        </div>
     </div>
 </div>
+
+<!-- Modal / Lightbox Pop-up -->
+<div id="photoModal" class="modal" onclick="closeModal()">
+    <span class="close-modal" onclick="closeModal()">&times;</span>
+    <img class="modal-content" id="modalImg">
+    <div class="modal-caption" id="modalCaption"></div>
+</div>
+
+<script>
+    function openModal(imgSrc, captionText) {
+        const modal = document.getElementById("photoModal");
+        const modalImg = document.getElementById("modalImg");
+        const modalCaption = document.getElementById("modalCaption");
+
+        modal.style.display = "flex";
+        modalImg.src = imgSrc;
+        modalCaption.innerText = captionText;
+    }
+
+    function closeModal() {
+        document.getElementById("photoModal").style.display = "none";
+    }
+</script>
 
 </body>
 </html>
