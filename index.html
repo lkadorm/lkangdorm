@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Workers' Dormitory Space Available | Tagore Upper Thomson</title>
-    <!-- Font Awesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
@@ -22,15 +21,8 @@
             font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
         }
 
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            background-color: var(--light-bg);
-            color: var(--text-color);
-            line-height: 1.6;
-        }
+        html { scroll-behavior: smooth; }
+        body { background-color: var(--light-bg); color: var(--text-color); line-height: 1.6; }
 
         /* Navigation Bar */
         .navbar {
@@ -62,37 +54,34 @@
             transition: color 0.3s ease;
             position: relative;
             padding-bottom: 5px;
+            display: inline-block;
         }
 
         .nav-links a:hover, .nav-links a.active {
-            color: var(--mint-green);
+            color: var(--mint-green) !important;
         }
 
+        /* Active Underline */
         .nav-links a.active::after {
             content: '';
             position: absolute;
             bottom: 0;
             left: 0;
             width: 100%;
-            height: 2px;
+            height: 3px;
             background-color: var(--mint-green);
         }
 
         .btn-book {
-            background-color: #2ecc71;
             background: linear-gradient(135deg, #2ecc71, #1abc9c);
             color: #ffffff !important;
             padding: 10px 22px !important;
             border-radius: 6px;
             font-weight: 800 !important;
             box-shadow: 0 4px 10px rgba(46, 204, 113, 0.3);
-            transition: transform 0.2s ease, box-shadow 0.2s ease !important;
         }
 
-        .btn-book:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 15px rgba(46, 204, 113, 0.4);
-        }
+        .btn-book::after { display: none !important; }
 
         .container {
             max-width: 900px;
@@ -104,7 +93,6 @@
             box-shadow: 0 4px 15px rgba(0,0,0,0.1);
         }
 
-        /* Header Banner */
         header {
             background-color: var(--primary-blue);
             color: white;
@@ -113,14 +101,8 @@
             border-top: 1px solid rgba(255,255,255,0.1);
         }
 
-        header h1 {
-            font-size: 2.2rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            font-weight: 800;
-        }
+        header h1 { font-size: 2.2rem; text-transform: uppercase; letter-spacing: 1px; font-weight: 800; }
 
-        /* Photo Gallery Preview */
         .gallery {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -137,18 +119,11 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            color: #666;
-            font-weight: bold;
             border: 1px solid #ddd;
         }
 
-        .gallery-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
+        .gallery-item img { width: 100%; height: 100%; object-fit: cover; }
 
-        /* Features Section */
         .features {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -156,137 +131,77 @@
             padding: 25px;
         }
 
-        .feature-card {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
+        .feature-card { display: flex; align-items: center; gap: 15px; }
 
         .feature-icon {
-            width: 55px;
-            height: 55px;
+            width: 55px; height: 55px;
             background-color: var(--accent-blue);
-            color: white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.4rem;
-            flex-shrink: 0;
+            color: white; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.4rem; flex-shrink: 0;
         }
 
-        .feature-text {
-            font-size: 1.1rem;
-            font-weight: 600;
-            color: var(--primary-blue);
-        }
+        .feature-text { font-size: 1.1rem; font-weight: 600; color: var(--primary-blue); }
 
-        /* Call to Action Banner */
         .cta-banner {
-            text-align: center;
-            padding: 20px;
+            text-align: center; padding: 20px;
             background-color: #f0f4f8;
-            border-top: 2px dashed #cbd5e1;
-            border-bottom: 2px dashed #cbd5e1;
+            border-top: 2px dashed #cbd5e1; border-bottom: 2px dashed #cbd5e1;
             margin: 10px 0;
         }
 
-        .cta-banner h2 {
-            color: var(--accent-blue);
-            font-size: 1.8rem;
-            text-transform: uppercase;
-            font-weight: 800;
-        }
+        .cta-banner h2 { color: var(--accent-blue); font-size: 1.8rem; text-transform: uppercase; font-weight: 800; }
 
-        /* Contact Details */
         .contact-section {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            align-items: center;
-            padding: 25px;
-            gap: 20px;
-            background-color: #ffffff;
+            display: flex; flex-wrap: wrap;
+            justify-content: space-between; align-items: center;
+            padding: 25px; gap: 20px; background-color: #ffffff;
         }
 
-        .contact-info p {
-            font-size: 1.1rem;
-            margin-bottom: 8px;
-        }
-
-        .contact-info strong {
-            color: var(--primary-blue);
-        }
-
-        .contact-info a {
-            color: var(--accent-blue);
-            text-decoration: none;
-            font-weight: bold;
-        }
-
-        .contact-info a:hover {
-            text-decoration: underline;
-        }
+        .contact-info p { font-size: 1.1rem; margin-bottom: 8px; }
+        .contact-info strong { color: var(--primary-blue); }
+        .contact-info a { color: var(--accent-blue); text-decoration: none; font-weight: bold; }
 
         .location-info {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            background: #eef2f5;
-            padding: 15px 20px;
-            border-radius: 8px;
+            display: flex; align-items: center; gap: 12px;
+            background: #eef2f5; padding: 15px 20px; border-radius: 8px;
         }
 
-        .location-icon {
-            font-size: 2.2rem;
-            color: #d9534f;
-        }
-
-        .location-text {
-            font-size: 1.2rem;
-            font-weight: bold;
-            color: var(--primary-blue);
-            text-transform: uppercase;
-            line-height: 1.2;
-        }
+        .location-icon { font-size: 2.2rem; color: #d9534f; }
+        .location-text { font-size: 1.2rem; font-weight: bold; color: var(--primary-blue); text-transform: uppercase; line-height: 1.2; }
 
         @media (max-width: 768px) {
             .navbar { justify-content: center; padding: 15px 10px; }
             .nav-links { gap: 12px; flex-wrap: wrap; justify-content: center; }
             .nav-links a { font-size: 0.8rem; }
             header h1 { font-size: 1.6rem; }
-            .cta-banner h2 { font-size: 1.3rem; }
             .contact-section { flex-direction: column; align-items: flex-start; }
         }
     </style>
 </head>
 <body>
 
-<!-- Navigation Header -->
 <nav class="navbar">
     <ul class="nav-links">
         <li><a href="index.html" class="active">HOME</a></li>
         <li><a href="rooms-facilities.html">ROOMS &amp; FACILITIES</a></li>
         <li><a href="location.html">LOCATION</a></li>
-        <li><a href="index.html#contact">CONTACT</a></li>
+        <li><a href="#contact">CONTACT</a></li>
         <li><a href="book-now.html" class="btn-book">BOOK NOW</a></li>
     </ul>
 </nav>
 
 <div class="container" id="home">
-    <!-- Header Banner -->
     <header>
         <h1>Workers' Dormitory<br>Space Available</h1>
     </header>
 
-    <!-- Images Gallery Preview -->
     <section class="gallery">
         <div class="gallery-item"><img src="room.jpeg" alt="Bedrooms Photo"></div>
         <div class="gallery-item"><img src="toilet.jpeg" alt="Bathroom Photo"></div>
         <div class="gallery-item"><img src="laundry.jpeg" alt="Laundry Photo"></div>
     </section>
 
-    <!-- Features Section -->
     <section class="features">
         <div class="feature-card">
             <div class="feature-icon"><i class="fa-solid fa-bed"></i></div>
@@ -314,23 +229,19 @@
         </div>
     </section>
 
-    <!-- Call to Action Banner -->
     <div id="cta" class="cta-banner">
         <h2>Book Now for September &amp; October!</h2>
     </div>
 
-    <!-- Contact & Location Section -->
     <section id="contact" class="contact-section">
         <div class="contact-info">
             <p><strong>FOR BOOKINGS &amp; ENQUIRIES</strong></p>
             <p>CALL: <a href="tel:64538288">64538288</a> / <a href="tel:83074227">83074227</a></p>
             <p>EMAIL: <a href="mailto:maung@LKANGCO.sg">maung@LKANGCO.sg</a></p>
         </div>
-        <div id="location-section" class="location-info">
+        <div class="location-info">
             <div class="location-icon"><i class="fa-solid fa-location-dot"></i></div>
-            <div class="location-text">
-                Tagore<br>Upper Thomson
-            </div>
+            <div class="location-text">Tagore<br>Upper Thomson</div>
         </div>
     </section>
 </div>
