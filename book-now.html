@@ -18,6 +18,7 @@
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; }
         body { background-color: var(--light-bg); color: var(--text-color); line-height: 1.6; }
 
+        /* Navigation Bar */
         .navbar {
             background-color: var(--primary-blue);
             padding: 15px 30px;
@@ -30,7 +31,7 @@
             box-shadow: 0 2px 10px rgba(0,0,0,0.3);
         }
 
-        .nav-links { display: flex; align-items: center; gap: 25px; list-style: none; }
+        .nav-links { display: flex; align-items: center; gap: 18px; list-style: none; }
 
         .nav-links a {
             color: #ffffff; text-decoration: none; font-size: 0.9rem;
@@ -46,17 +47,28 @@
             width: 100%; height: 3px; background-color: var(--mint-green);
         }
 
+        /* Buttons in Header */
         .btn-book {
             background: linear-gradient(135deg, #2ecc71, #1abc9c);
-            color: #ffffff !important; padding: 10px 22px !important;
+            color: #ffffff !important; padding: 10px 18px !important;
             border-radius: 6px; font-weight: 800 !important;
             box-shadow: 0 4px 10px rgba(46, 204, 113, 0.3);
         }
 
-        .btn-book::after { display: none !important; }
+        .btn-whatsapp {
+            background: #25D366;
+            color: #ffffff !important; padding: 10px 18px !important;
+            border-radius: 6px; font-weight: 800 !important;
+            box-shadow: 0 4px 10px rgba(37, 211, 102, 0.3);
+            display: flex; align-items: center; gap: 8px;
+        }
 
+        .btn-whatsapp:hover { background-color: #20ba5a !important; }
+        .btn-book::after, .btn-whatsapp::after { display: none !important; }
+
+        /* Form Container */
         .container {
-            max-width: 700px; margin: 50px auto; background: #ffffff;
+            max-width: 750px; margin: 40px auto; background: #ffffff;
             border-radius: 8px; padding: 40px; box-shadow: 0 4px 15px rgba(0,0,0,0.05);
         }
 
@@ -65,13 +77,18 @@
             text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 35px; line-height: 1.5;
         }
 
-        .form-group { margin-bottom: 30px; }
-        .form-row { display: flex; gap: 30px; }
+        .form-group { margin-bottom: 25px; }
+        .form-row { display: flex; gap: 25px; }
         .form-row .form-group { flex: 1; }
 
-        input[type="text"], input[type="email"], textarea {
+        .form-group label {
+            display: block; font-size: 0.75rem; font-weight: 700;
+            color: #777; text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 5px;
+        }
+
+        input[type="text"], input[type="email"], input[type="tel"], input[type="number"], input[type="date"], select, textarea {
             width: 100%; border: none; border-bottom: 1px solid #dcdcdc;
-            padding: 10px 0; font-size: 0.95rem; color: #555; outline: none;
+            padding: 10px 0; font-size: 0.95rem; color: #333; outline: none;
             transition: border-color 0.3s ease; background: transparent;
         }
 
@@ -79,8 +96,9 @@
             color: #aaa; letter-spacing: 1px; font-size: 0.85rem; text-transform: uppercase;
         }
 
-        input:focus, textarea:focus { border-bottom-color: var(--primary-blue); }
-        textarea { resize: vertical; min-height: 100px; }
+        input:focus, select:focus, textarea:focus { border-bottom-color: var(--primary-blue); }
+        select { cursor: pointer; color: #555; }
+        textarea { resize: vertical; min-height: 90px; }
 
         .btn-send {
             background-color: var(--button-blue); color: #ffffff; border: none;
@@ -92,7 +110,7 @@
 
         @media (max-width: 768px) {
             .navbar { justify-content: center; padding: 15px 10px; }
-            .nav-links { gap: 12px; flex-wrap: wrap; justify-content: center; }
+            .nav-links { gap: 10px; flex-wrap: wrap; justify-content: center; }
             .nav-links a { font-size: 0.8rem; }
             .container { padding: 25px; margin: 20px; }
             .form-row { flex-direction: column; gap: 0; }
@@ -108,17 +126,25 @@
         <li><a href="location.html">LOCATION</a></li>
         <li><a href="index.html#contact">CONTACT</a></li>
         <li><a href="book-now.html" class="btn-book active">BOOK NOW</a></li>
+        <li><a href="https://api.whatsapp.com/send?phone=6583074227" target="_blank" class="btn-whatsapp"><i class="fa-brands fa-whatsapp"></i> WHATSAPP US</a></li>
     </ul>
 </nav>
 
 <div class="container">
     <h2 class="form-heading">Kindly fill up the form below and we'll contact you within 2-3 business days.</h2>
 
-    <form action="https://formspree.io/f/mvzewqwp" method="POST">
+    <form action="https://formspree.io/f/YOUR_FORMSPREE_KEY" method="POST">
+        <!-- Name -->
         <div class="form-group">
             <input type="text" name="name" placeholder="NAME" required>
         </div>
 
+        <!-- Phone Number -->
+        <div class="form-group">
+            <input type="tel" name="phone" placeholder="PHONE NUMBER" required>
+        </div>
+
+        <!-- Email & Company -->
         <div class="form-row">
             <div class="form-group">
                 <input type="email" name="email" placeholder="EMAIL" required>
@@ -128,8 +154,29 @@
             </div>
         </div>
 
+        <!-- No. of Workers & Expected Tenancy Duration -->
+        <div class="form-row">
+            <div class="form-group">
+                <input type="number" name="workers_count" placeholder="NO. OF WORKERS" min="1" required>
+            </div>
+            <div class="form-group">
+                <select name="tenancy_duration" required>
+                    <option value="" disabled selected>EXPECTED TENANCY DURATION</option>
+                    <option value="12 months">12 Months</option>
+                    <option value="24 months">24 Months</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Move-in Date -->
         <div class="form-group">
-            <textarea name="message" placeholder="MESSAGE" required></textarea>
+            <label for="movein_date">Expected Move-in Date</label>
+            <input type="date" id="movein_date" name="movein_date" required>
+        </div>
+
+        <!-- Message -->
+        <div class="form-group">
+            <textarea name="message" placeholder="MESSAGE"></textarea>
         </div>
 
         <button type="submit" class="btn-send">SEND</button>
