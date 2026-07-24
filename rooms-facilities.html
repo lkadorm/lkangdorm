@@ -14,20 +14,9 @@
             --text-color: #333333;
         }
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-        }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; }
+        body { background-color: var(--light-bg); color: var(--text-color); line-height: 1.6; }
 
-        body {
-            background-color: var(--light-bg);
-            color: var(--text-color);
-            line-height: 1.6;
-        }
-
-        /* Navigation Bar */
         .navbar {
             background-color: var(--primary-blue);
             padding: 15px 30px;
@@ -40,107 +29,54 @@
             box-shadow: 0 2px 10px rgba(0,0,0,0.3);
         }
 
-        .nav-links {
-            display: flex;
-            align-items: center;
-            gap: 25px;
-            list-style: none;
-        }
+        .nav-links { display: flex; align-items: center; gap: 25px; list-style: none; }
 
         .nav-links a {
-            color: #ffffff;
-            text-decoration: none;
-            font-size: 0.9rem;
-            font-weight: 700;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            transition: color 0.3s ease;
-            position: relative;
-            padding-bottom: 5px;
+            color: #ffffff; text-decoration: none; font-size: 0.9rem;
+            font-weight: 700; letter-spacing: 1px; text-transform: uppercase;
+            transition: color 0.3s ease; position: relative; padding-bottom: 5px;
+            display: inline-block;
         }
 
-        .nav-links a:hover, .nav-links a.active {
-            color: var(--mint-green);
-        }
+        .nav-links a:hover, .nav-links a.active { color: var(--mint-green) !important; }
 
         .nav-links a.active::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 2px;
-            background-color: var(--mint-green);
+            content: ''; position: absolute; bottom: 0; left: 0;
+            width: 100%; height: 3px; background-color: var(--mint-green);
         }
 
         .btn-book {
-            background-color: #2ecc71;
             background: linear-gradient(135deg, #2ecc71, #1abc9c);
-            color: #ffffff !important;
-            padding: 10px 22px !important;
-            border-radius: 6px;
-            font-weight: 800 !important;
+            color: #ffffff !important; padding: 10px 22px !important;
+            border-radius: 6px; font-weight: 800 !important;
             box-shadow: 0 4px 10px rgba(46, 204, 113, 0.3);
         }
 
+        .btn-book::after { display: none !important; }
+
         .container {
-            max-width: 1000px;
-            margin: 30px auto;
-            background: #ffffff;
-            border: 4px solid var(--primary-blue);
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            padding: 30px;
+            max-width: 1000px; margin: 30px auto; background: #ffffff;
+            border: 4px solid var(--primary-blue); border-radius: 8px;
+            overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.1); padding: 30px;
         }
 
-        header {
-            text-align: center;
-            margin-bottom: 30px;
-        }
+        header { text-align: center; margin-bottom: 30px; }
+        header h1 { color: var(--primary-blue); font-size: 2.2rem; text-transform: uppercase; }
 
-        header h1 {
-            color: var(--primary-blue);
-            font-size: 2.2rem;
-            text-transform: uppercase;
-        }
-
-        /* Photo Gallery Grid */
-        .photo-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 25px;
-        }
+        .photo-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; }
 
         .photo-card {
-            background: #ffffff;
-            border: 1px solid #e1e8ed;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-            transition: transform 0.2s ease;
+            background: #ffffff; border: 1px solid #e1e8ed; border-radius: 8px;
+            overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.05); transition: transform 0.2s ease;
         }
 
-        .photo-card:hover {
-            transform: translateY(-4px);
-        }
-
-        .photo-card img {
-            width: 100%;
-            height: 220px;
-            object-fit: cover;
-            display: block;
-        }
+        .photo-card:hover { transform: translateY(-4px); }
+        .photo-card img { width: 100%; height: 220px; object-fit: cover; display: block; }
 
         .photo-title {
-            padding: 12px 15px;
-            font-weight: 700;
-            color: var(--primary-blue);
-            text-align: center;
-            background-color: #f8f9fa;
-            border-top: 1px solid #e1e8ed;
-            text-transform: uppercase;
-            font-size: 1rem;
+            padding: 12px 15px; font-weight: 700; color: var(--primary-blue);
+            text-align: center; background-color: #f8f9fa; border-top: 1px solid #e1e8ed;
+            text-transform: uppercase; font-size: 1rem;
         }
 
         @media (max-width: 768px) {
@@ -153,16 +89,14 @@
 </head>
 <body>
 
-<!-- Navigation Header -->
 <nav class="navbar">
     <ul class="nav-links">
-        <li><a href="index.html" class="active">HOME</a></li>
-        <li><a href="rooms-facilities.html">ROOMS &amp; FACILITIES</a></li>
+        <li><a href="index.html">HOME</a></li>
+        <li><a href="rooms-facilities.html" class="active">ROOMS &amp; FACILITIES</a></li>
         <li><a href="location.html">LOCATION</a></li>
         <li><a href="index.html#contact">CONTACT</a></li>
         <li><a href="book-now.html" class="btn-book">BOOK NOW</a></li>
     </ul>
-</nav>
 </nav>
 
 <div class="container">
@@ -170,36 +104,14 @@
         <h1>Rooms &amp; Facilities Gallery</h1>
     </header>
 
-    <!-- Photos Grid -->
     <div class="photo-grid">
-        <div class="photo-card">
-            <img src="room1.jpeg" alt="Room 1">
-            <div class="photo-title">Room 1</div>
-        </div>
-        <div class="photo-card">
-            <img src="room2.jpeg" alt="Room 2">
-            <div class="photo-title">Room 2</div>
-        </div>
-        <div class="photo-card">
-            <img src="bed1.jpeg" alt="Bed 1">
-            <div class="photo-title">Bed 1</div>
-        </div>
-        <div class="photo-card">
-            <img src="corridor1.png" alt="Corridor 1">
-            <div class="photo-title">Corridor 1</div>
-        </div>
-        <div class="photo-card">
-            <img src="corridor2.png" alt="Corridor 2">
-            <div class="photo-title">Corridor 2</div>
-        </div>
-        <div class="photo-card">
-            <img src="corridor3.png" alt="Corridor 3">
-            <div class="photo-title">Corridor 3</div>
-        </div>
-        <div class="photo-card">
-            <img src="dining.png" alt="Dining Area">
-            <div class="photo-title">Dining Area</div>
-        </div>
+        <div class="photo-card"><img src="room1.jpg" alt="Room 1"><div class="photo-title">Room 1</div></div>
+        <div class="photo-card"><img src="room2.jpg" alt="Room 2"><div class="photo-title">Room 2</div></div>
+        <div class="photo-card"><img src="bed1.jpg" alt="Bed 1"><div class="photo-title">Bed 1</div></div>
+        <div class="photo-card"><img src="corridor1.png" alt="Corridor 1"><div class="photo-title">Corridor 1</div></div>
+        <div class="photo-card"><img src="corridor2.png" alt="Corridor 2"><div class="photo-title">Corridor 2</div></div>
+        <div class="photo-card"><img src="corridor3.png" alt="Corridor 3"><div class="photo-title">Corridor 3</div></div>
+        <div class="photo-card"><img src="dining.png" alt="Dining Area"><div class="photo-title">Dining Area</div></div>
     </div>
 </div>
 
