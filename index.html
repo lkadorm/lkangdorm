@@ -43,7 +43,7 @@
     .form-input:focus, .form-select:focus, .form-textarea:focus { border-color: #3b82f6; }
     .form-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
 
-    .btn { padding: 9px 16px; border-radius: 6px; border: none; font-weight: 600; cursor: pointer; font-size: 0.875rem; transition: background-color 0.2s; display: inline-flex; align-items: center; gap: 6px; text-decoration: none; }
+    .btn { padding: 9px 16px; border-radius: 6px; border: none; font-weight: 600; cursor: pointer; font-size: 0.875rem; transition: background-color 0.2s; display: inline-flex; align-items: center; gap: 6px; text-decoration: none; justify-content: center; }
     .btn-primary { background-color: #2563eb; color: #fff; } .btn-primary:hover { background-color: #1d4ed8; }
     .btn-green { background-color: #16a34a; color: #fff; } .btn-green:hover { background-color: #15803d; }
     .btn-excel { background-color: #16a34a; color: #fff; } .btn-excel:hover { background-color: #15803d; }
@@ -51,6 +51,9 @@
     .btn-warning { background-color: #d97706; color: #fff; } .btn-warning:hover { background-color: #b45309; }
     .btn-danger { background-color: #dc2626; color: #fff; } .btn-danger:hover { background-color: #b91c1c; }
     .btn-secondary:disabled { opacity: 0.5; cursor: not-allowed; }
+
+    .auth-toggle { margin-top: 16px; text-align: center; font-size: 0.85rem; color: #94a3b8; }
+    .auth-toggle a { color: #3b82f6; text-decoration: none; cursor: pointer; font-weight: bold; }
 
     /* --- LAYOUT --- */
     #app-container { display: flex; min-height: 100vh; }
@@ -180,6 +183,7 @@
 
   <!-- AUTHENTICATION -->
   <div id="auth-container">
+    
     <!-- LOGIN CARD -->
     <div id="login-card" class="auth-card">
       <div class="auth-header">
@@ -195,16 +199,20 @@
           <label>Password</label>
           <input type="password" id="login-password" class="form-input" placeholder="Enter password" required>
         </div>
-        <button type="submit" class="btn btn-primary" style="width:100%; margin-bottom: 15px;">Log In</button>
+        
+        <!-- Login Button -->
+        <button type="submit" class="btn btn-primary" style="width:100%; margin-bottom: 10px;">Log In</button>
+        
+        <!-- EXPLICIT FORGOT PASSWORD BUTTON -->
+        <button type="button" class="btn btn-secondary" style="width:100%; margin-bottom: 15px;" onclick="toggleAuthMode('forgot')">Forgot Password?</button>
       </form>
-      <!-- NEW SECURE FLEXBOX LAYOUT FOR LINKS -->
-      <div style="display: flex; justify-content: space-between; align-items: center; font-size: 0.85rem; color: #94a3b8;">
-        <a onclick="toggleAuthMode('forgot')" style="color: #3b82f6; text-decoration: none; cursor: pointer;">Forgot Password?</a>
-        <span>No account? <a onclick="toggleAuthMode('register')" style="color: #3b82f6; text-decoration: none; cursor: pointer; font-weight: bold;">Register</a></span>
+
+      <div class="auth-toggle">
+        Don't have an admin account? <a onclick="toggleAuthMode('register')">Register Admin</a>
       </div>
     </div>
 
-    <!-- FORGOT PASSWORD CARD (ROBUST) -->
+    <!-- FORGOT PASSWORD CARD (NEW & CLEAR) -->
     <div id="forgot-card" class="auth-card hidden">
       <div class="auth-header">
         <h2>L K Ang Dormitory</h2>
@@ -217,8 +225,8 @@
         </div>
         <button type="submit" class="btn btn-warning" style="width:100%; margin-bottom: 15px;">Recover Password</button>
       </form>
-      <div style="text-align: center; font-size: 0.85rem; color: #94a3b8;">
-        Remembered your password? <a onclick="toggleAuthMode('login')" style="color: #3b82f6; text-decoration: none; cursor: pointer; font-weight: bold;">Sign In</a>
+      <div class="auth-toggle">
+        Remembered your password? <a onclick="toggleAuthMode('login')">Sign In here</a>
       </div>
     </div>
 
@@ -243,8 +251,8 @@
         </div>
         <button type="submit" class="btn btn-green" style="width:100%; margin-bottom: 15px;">Create Account</button>
       </form>
-      <div style="text-align: center; font-size: 0.85rem; color: #94a3b8;">
-        Already registered? <a onclick="toggleAuthMode('login')" style="color: #3b82f6; text-decoration: none; cursor: pointer; font-weight: bold;">Sign In</a>
+      <div class="auth-toggle">
+        Already registered? <a onclick="toggleAuthMode('login')">Sign In here</a>
       </div>
     </div>
   </div>
@@ -279,12 +287,19 @@
             <h1 class="page-title">Resident Records</h1>
             
             <div class="header-actions">
+              <!-- Search Box -->
               <input type="text" id="search-resident" class="form-input" placeholder="🔍 Search Name, ID, Bed No..." onkeyup="handleSearch()" style="max-width: 220px; background-color: #172033;">
+              
+              <!-- Bulk Delete Button -->
               <button class="btn btn-danger" onclick="deleteSelectedResidents()">🗑️ Delete Selected</button>
+              
               <button class="btn btn-green" onclick="exportResidentsPDF()">📄 Export Selected PDF</button>
+
               <button class="btn btn-green" onclick="openNewResidentModal()">+ New Resident</button>
+              
               <input type="file" id="excel-file-input" accept=".xlsx, .xls" style="display: none;" onchange="handleExcelImport(event)" />
               <button class="btn btn-green" onclick="document.getElementById('excel-file-input').click()">📁 Import Excel</button>
+              
               <button class="btn btn-green" onclick="exportResidentsToExcel()">📊 Export to Excel</button>
             </div>
           </div>
@@ -300,6 +315,7 @@
                     <input type="checkbox" id="select-all-res" onchange="toggleSelectAllResidents(this)">
                   </th>
                   <th>Photo</th>
+                  <!-- Sortable Header -->
                   <th onclick="toggleResidentSort()" style="cursor:pointer; color:#3b82f6;" title="Click to sort by ID">Resident ID <span id="res-sort-icon">🔽</span></th>
                   <th>Name</th>
                   <th>WP No.</th>
@@ -319,7 +335,7 @@
             </table>
           </div>
 
-          <!-- Pagination Controls -->
+          <!-- Pagination Controls with Page Numbers -->
           <div class="pagination-container">
             <div>
               <label style="font-size: 0.85rem; color: #cbd5e1; margin-right: 8px;">Rows per page:</label>
@@ -329,7 +345,12 @@
                 <option value="100">100</option>
               </select>
             </div>
-            <div style="display: flex; gap: 4px; align-items: center;" id="res-page-numbers"></div>
+            
+            <!-- Specific Page Number Buttons Here -->
+            <div style="display: flex; gap: 4px; align-items: center;" id="res-page-numbers">
+              <!-- Dynamically Populated via JS -->
+            </div>
+            
             <div class="pagination-info">
               Showing <span id="res-page-info">0-0 of 0</span> records
             </div>
@@ -403,6 +424,7 @@
                 <tr>
                   <th>Name</th>
                   <th>Email</th>
+                  <th>Password</th>
                   <th>Role</th>
                   <th>Actions</th>
                 </tr>
@@ -416,7 +438,7 @@
     </div>
   </div>
 
-  <!-- HIDDEN CONTAINERS FOR PDF -->
+  <!-- HIDDEN CONTAINER FOR GENERATING MAINTENANCE PDF REPORT -->
   <div id="pdf-report-template">
     <div class="pdf-header">
       <h1>Maintenance Report</h1>
@@ -425,6 +447,7 @@
     <div id="pdf-cards-container"></div>
   </div>
 
+  <!-- HIDDEN CONTAINER FOR GENERATING RESIDENT PDF REPORT -->
   <div id="pdf-resident-template">
     <div class="pdf-header">
       <h1>Resident Records Report</h1>
@@ -566,6 +589,7 @@
       <h2 style="margin-bottom:16px;">Update Request Details</h2>
       <form onsubmit="saveMaintenanceUpdate(event)">
         <input type="hidden" id="update-req-key">
+        
         <div class="form-group">
           <label>Assign Person Name</label>
           <select id="update-assign-person" class="form-select" required>
@@ -605,15 +629,20 @@
       <h2 id="chk-modal-title" style="margin-bottom:16px;">Dormitory Inspection Record</h2>
       <form onsubmit="submitChecklist(event)">
         <input type="hidden" id="chk-edit-key" value="">
+
+        <!-- Remarks Field -->
         <div class="form-group">
           <label>Remarks</label>
           <textarea id="chk-remarks" class="form-textarea" rows="3" placeholder="Enter remarks..."></textarea>
         </div>
+
+        <!-- PDF File Upload Field -->
         <div class="form-group" id="chk-file-group">
           <label>Attachment (PDF File)</label>
           <input type="file" id="chk-file" class="form-input" accept="application/pdf">
           <p id="chk-file-hint" style="font-size:0.75rem; color:#94a3b8; margin-top:4px; display:none;"></p>
         </div>
+
         <div style="display:flex; gap:10px; margin-top:20px;">
           <button type="submit" id="chk-submit-btn" class="btn btn-green">Submit Inspection</button>
           <button type="button" class="btn btn-secondary" onclick="closeModal('modal-new-checklist')">Cancel</button>
@@ -637,7 +666,7 @@
         </div>
         <div class="form-group">
           <label>Password</label>
-          <input type="password" id="user-password-input" class="form-input">
+          <input type="text" id="user-password-input" class="form-input" required>
         </div>
         <div class="form-group">
           <label>Role</label>
@@ -687,6 +716,7 @@
 
     // --- REALTIME SYNC LISTENERS ---
     window.addEventListener('DOMContentLoaded', () => {
+      // 1. Sync Users
       db.ref('users').on('value', (snapshot) => {
         users = snapshot.val() || {};
         if (Object.keys(users).length === 0) {
@@ -695,22 +725,26 @@
         renderUsersTable();
       });
 
+      // 2. Sync Residents
       db.ref('residents').on('value', (snapshot) => {
         residents = snapshot.val() || {};
         renderResidentStats(); 
         renderResidentsTable();
       });
 
+      // 3. Sync Maintenance
       db.ref('maintenance').on('value', (snapshot) => {
         maintenanceRequests = snapshot.val() || {};
         renderMaintenanceTable();
       });
 
+      // 4. Sync Checklist
       db.ref('checklists').on('value', (snapshot) => {
         checklists = snapshot.val() || {};
         renderChecklistTable(checklists); 
       });
 
+      // Refresh Auto-Login
       if (currentUser) {
         showDashboard(currentUser);
       }
@@ -730,7 +764,7 @@
       }
     }
 
-    // 💥 REVISED ROBUST AUTHENTICATION & FORGOT PASSWORD LOGIC 💥
+    // --- 💥 AUTHENTICATION & FORGOT PASSWORD LOGIC 💥 ---
     function toggleAuthMode(mode) {
       const loginCard = document.getElementById('login-card');
       const regCard = document.getElementById('register-card');
@@ -752,7 +786,6 @@
     function handleForgotPassword(e) {
       e.preventDefault();
       
-      // Allow time for Firebase to load the users list
       if (!users || Object.keys(users).length === 0) {
           alert("System is still connecting to the database. Please try again in a few seconds.");
           return;
@@ -762,13 +795,11 @@
       if(!emailInput) return;
       
       const targetEmail = emailInput.value.trim().toLowerCase();
-
-      // Find user (Case Insensitive)
       const foundUser = Object.values(users).find(u => u.email && u.email.trim().toLowerCase() === targetEmail);
 
       if (foundUser) {
-        alert(`Your password is: ${foundUser.password}\n\n(Note: Keep your password safe!)`);
-        emailInput.value = ''; // Reset Form
+        alert(`Your current password is: ${foundUser.password}\n\n(Note: Keep your password safe!)`);
+        emailInput.value = ''; 
         toggleAuthMode('login');
       } else {
         alert("Sorry, this Email Address is not registered in the system!");
@@ -813,6 +844,8 @@
       localStorage.removeItem('lkang_current_user');
       document.getElementById('app-container').classList.add('hidden');
       document.getElementById('auth-container').classList.remove('hidden');
+      document.getElementById('login-email').value = '';
+      document.getElementById('login-password').value = '';
     }
 
     // --- NAVIGATION ---
@@ -1540,7 +1573,6 @@
       }
     }
 
-    // --- CHECKBOX & DIRECT PDF EXPORT LOGIC FOR MAINTENANCE ---
     function toggleSelectAllMaintenance(master) {
       const checkboxes = document.querySelectorAll('.row-checkbox');
       checkboxes.forEach(cb => cb.checked = master.checked);
@@ -1682,8 +1714,7 @@
       });
     }
 
-    // --- CHECKLIST LOGIC (WITH EDIT & DELETE FEATURES) ---
-
+    // --- CHECKLIST LOGIC ---
     function openEditChecklistModal(key) {
       const item = checklists[key];
       if (!item) return;
@@ -1823,7 +1854,7 @@
       });
     }
 
-    // --- USERS LOGIC ---
+    // --- 💥 USERS LOGIC (PASSWORD EDIT FIX) 💥 ---
     function openNewUserModal() {
       document.getElementById('modal-user-title').innerText = "Add New User";
       document.getElementById('user-submit-btn').innerText = "Create User";
@@ -1846,11 +1877,14 @@
       document.getElementById('user-submit-btn').innerText = "Update User";
       document.getElementById('user-edit-key').value = key;
 
-      document.getElementById('user-name-input').value = u.name;
-      document.getElementById('user-email-input').value = u.email;
-      document.getElementById('user-password-input').value = ''; 
-      document.getElementById('user-password-input').required = false; 
-      document.getElementById('user-role-input').value = u.role;
+      document.getElementById('user-name-input').value = u.name || '';
+      document.getElementById('user-email-input').value = u.email || '';
+      
+      // FIX: Pre-fill password so user can explicitly see and update it
+      document.getElementById('user-password-input').value = u.password || ''; 
+      document.getElementById('user-password-input').required = true; 
+      
+      document.getElementById('user-role-input').value = u.role || 'Staff';
 
       openModal('modal-user');
     }
@@ -1860,18 +1894,32 @@
       const key = document.getElementById('user-edit-key').value;
       const name = document.getElementById('user-name-input').value;
       const email = document.getElementById('user-email-input').value;
-      const pwd = document.getElementById('user-password-input').value;
+      const pwd = document.getElementById('user-password-input').value.trim();
       const role = document.getElementById('user-role-input').value;
 
       if (key) {
-        const updateData = { name, email, role };
-        if (pwd.trim() !== "") updateData.password = pwd;
-        db.ref('users/' + key).update(updateData);
-      } else {
-        db.ref('users').push({ name, email, password: pwd, role });
-      }
+        // Edit Existing User
+        const updateData = { 
+          name: name, 
+          email: email, 
+          role: role,
+          password: pwd // Save the explicitly updated password
+        };
+        
+        db.ref('users/' + key).update(updateData).then(() => {
+            alert("User account updated successfully!");
+            closeModal('modal-user');
+        }).catch(err => {
+            alert("Error updating user: " + err.message);
+        });
 
-      closeModal('modal-user');
+      } else {
+        // Create New User
+        db.ref('users').push({ name, email, password: pwd, role }).then(() => {
+            alert("New user created successfully!");
+            closeModal('modal-user');
+        });
+      }
     }
 
     function deleteUser(key) {
@@ -1896,6 +1944,7 @@
         tr.innerHTML = `
           <td>${u.name}</td>
           <td>${u.email}</td>
+          <td style="color: #38ef7d; font-family: monospace;">${u.password}</td> <!-- Show password explicitly for admin -->
           <td><b>${u.role}</b></td>
           <td style="display:flex; gap:6px;">
             <button class="btn btn-warning" style="padding:4px 8px; font-size:0.75rem;" onclick="openEditUserModal('${key}')">Edit</button>
