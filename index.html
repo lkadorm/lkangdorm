@@ -52,9 +52,6 @@
     .btn-danger { background-color: #dc2626; color: #fff; } .btn-danger:hover { background-color: #b91c1c; }
     .btn-secondary:disabled { opacity: 0.5; cursor: not-allowed; }
 
-    .auth-toggle { margin-top: 16px; font-size: 0.85rem; color: #94a3b8; }
-    .auth-toggle a { color: #3b82f6; text-decoration: none; cursor: pointer; }
-
     /* --- LAYOUT --- */
     #app-container { display: flex; min-height: 100vh; }
     .sidebar { width: 250px; background-color: #0b1120; border-right: 1px solid #1e293b; display: flex; flex-direction: column; padding: 16px 12px; flex-shrink: 0; }
@@ -198,16 +195,16 @@
           <label>Password</label>
           <input type="password" id="login-password" class="form-input" placeholder="Enter password" required>
         </div>
-        <button type="submit" class="btn btn-primary" style="width:100%; margin-bottom: 10px;">Log In</button>
+        <button type="submit" class="btn btn-primary" style="width:100%; margin-bottom: 15px;">Log In</button>
       </form>
-      <div class="auth-toggle">
-        <a onclick="toggleAuthMode('forgot')" style="float: left;">Forgot Password?</a>
-        <span style="float: right;">No account? <a onclick="toggleAuthMode('register')">Register</a></span>
-        <div style="clear: both;"></div>
+      <!-- NEW SECURE FLEXBOX LAYOUT FOR LINKS -->
+      <div style="display: flex; justify-content: space-between; align-items: center; font-size: 0.85rem; color: #94a3b8;">
+        <a onclick="toggleAuthMode('forgot')" style="color: #3b82f6; text-decoration: none; cursor: pointer;">Forgot Password?</a>
+        <span>No account? <a onclick="toggleAuthMode('register')" style="color: #3b82f6; text-decoration: none; cursor: pointer; font-weight: bold;">Register</a></span>
       </div>
     </div>
 
-    <!-- FORGOT PASSWORD CARD (NEW) -->
+    <!-- FORGOT PASSWORD CARD (ROBUST) -->
     <div id="forgot-card" class="auth-card hidden">
       <div class="auth-header">
         <h2>L K Ang Dormitory</h2>
@@ -218,10 +215,10 @@
           <label>Registered Email Address</label>
           <input type="email" id="forgot-email" class="form-input" placeholder="Enter your email" required>
         </div>
-        <button type="submit" class="btn btn-warning" style="width:100%; margin-bottom: 10px;">Recover Password</button>
+        <button type="submit" class="btn btn-warning" style="width:100%; margin-bottom: 15px;">Recover Password</button>
       </form>
-      <div class="auth-toggle">
-        Remembered your password? <a onclick="toggleAuthMode('login')">Sign In</a>
+      <div style="text-align: center; font-size: 0.85rem; color: #94a3b8;">
+        Remembered your password? <a onclick="toggleAuthMode('login')" style="color: #3b82f6; text-decoration: none; cursor: pointer; font-weight: bold;">Sign In</a>
       </div>
     </div>
 
@@ -244,10 +241,10 @@
           <label>Password</label>
           <input type="password" id="reg-password" class="form-input" required>
         </div>
-        <button type="submit" class="btn btn-green" style="width:100%; margin-bottom: 10px;">Create Account</button>
+        <button type="submit" class="btn btn-green" style="width:100%; margin-bottom: 15px;">Create Account</button>
       </form>
-      <div class="auth-toggle">
-        Already registered? <a onclick="toggleAuthMode('login')">Sign In</a>
+      <div style="text-align: center; font-size: 0.85rem; color: #94a3b8;">
+        Already registered? <a onclick="toggleAuthMode('login')" style="color: #3b82f6; text-decoration: none; cursor: pointer; font-weight: bold;">Sign In</a>
       </div>
     </div>
   </div>
@@ -282,19 +279,12 @@
             <h1 class="page-title">Resident Records</h1>
             
             <div class="header-actions">
-              <!-- Search Box -->
               <input type="text" id="search-resident" class="form-input" placeholder="🔍 Search Name, ID, Bed No..." onkeyup="handleSearch()" style="max-width: 220px; background-color: #172033;">
-              
-              <!-- Bulk Delete Button -->
               <button class="btn btn-danger" onclick="deleteSelectedResidents()">🗑️ Delete Selected</button>
-              
               <button class="btn btn-green" onclick="exportResidentsPDF()">📄 Export Selected PDF</button>
-
               <button class="btn btn-green" onclick="openNewResidentModal()">+ New Resident</button>
-              
               <input type="file" id="excel-file-input" accept=".xlsx, .xls" style="display: none;" onchange="handleExcelImport(event)" />
               <button class="btn btn-green" onclick="document.getElementById('excel-file-input').click()">📁 Import Excel</button>
-              
               <button class="btn btn-green" onclick="exportResidentsToExcel()">📊 Export to Excel</button>
             </div>
           </div>
@@ -310,7 +300,6 @@
                     <input type="checkbox" id="select-all-res" onchange="toggleSelectAllResidents(this)">
                   </th>
                   <th>Photo</th>
-                  <!-- Sortable Header -->
                   <th onclick="toggleResidentSort()" style="cursor:pointer; color:#3b82f6;" title="Click to sort by ID">Resident ID <span id="res-sort-icon">🔽</span></th>
                   <th>Name</th>
                   <th>WP No.</th>
@@ -330,7 +319,7 @@
             </table>
           </div>
 
-          <!-- Pagination Controls with Page Numbers -->
+          <!-- Pagination Controls -->
           <div class="pagination-container">
             <div>
               <label style="font-size: 0.85rem; color: #cbd5e1; margin-right: 8px;">Rows per page:</label>
@@ -340,12 +329,7 @@
                 <option value="100">100</option>
               </select>
             </div>
-            
-            <!-- Specific Page Number Buttons Here -->
-            <div style="display: flex; gap: 4px; align-items: center;" id="res-page-numbers">
-              <!-- Dynamically Populated via JS -->
-            </div>
-            
+            <div style="display: flex; gap: 4px; align-items: center;" id="res-page-numbers"></div>
             <div class="pagination-info">
               Showing <span id="res-page-info">0-0 of 0</span> records
             </div>
@@ -432,7 +416,7 @@
     </div>
   </div>
 
-  <!-- HIDDEN CONTAINER FOR GENERATING MAINTENANCE PDF REPORT -->
+  <!-- HIDDEN CONTAINERS FOR PDF -->
   <div id="pdf-report-template">
     <div class="pdf-header">
       <h1>Maintenance Report</h1>
@@ -441,7 +425,6 @@
     <div id="pdf-cards-container"></div>
   </div>
 
-  <!-- HIDDEN CONTAINER FOR GENERATING RESIDENT PDF REPORT -->
   <div id="pdf-resident-template">
     <div class="pdf-header">
       <h1>Resident Records Report</h1>
@@ -583,7 +566,6 @@
       <h2 style="margin-bottom:16px;">Update Request Details</h2>
       <form onsubmit="saveMaintenanceUpdate(event)">
         <input type="hidden" id="update-req-key">
-        
         <div class="form-group">
           <label>Assign Person Name</label>
           <select id="update-assign-person" class="form-select" required>
@@ -623,20 +605,15 @@
       <h2 id="chk-modal-title" style="margin-bottom:16px;">Dormitory Inspection Record</h2>
       <form onsubmit="submitChecklist(event)">
         <input type="hidden" id="chk-edit-key" value="">
-
-        <!-- Remarks Field -->
         <div class="form-group">
           <label>Remarks</label>
           <textarea id="chk-remarks" class="form-textarea" rows="3" placeholder="Enter remarks..."></textarea>
         </div>
-
-        <!-- PDF File Upload Field -->
         <div class="form-group" id="chk-file-group">
           <label>Attachment (PDF File)</label>
           <input type="file" id="chk-file" class="form-input" accept="application/pdf">
           <p id="chk-file-hint" style="font-size:0.75rem; color:#94a3b8; margin-top:4px; display:none;"></p>
         </div>
-
         <div style="display:flex; gap:10px; margin-top:20px;">
           <button type="submit" id="chk-submit-btn" class="btn btn-green">Submit Inspection</button>
           <button type="button" class="btn btn-secondary" onclick="closeModal('modal-new-checklist')">Cancel</button>
@@ -710,7 +687,6 @@
 
     // --- REALTIME SYNC LISTENERS ---
     window.addEventListener('DOMContentLoaded', () => {
-      // 1. Sync Users
       db.ref('users').on('value', (snapshot) => {
         users = snapshot.val() || {};
         if (Object.keys(users).length === 0) {
@@ -719,26 +695,22 @@
         renderUsersTable();
       });
 
-      // 2. Sync Residents
       db.ref('residents').on('value', (snapshot) => {
         residents = snapshot.val() || {};
         renderResidentStats(); 
         renderResidentsTable();
       });
 
-      // 3. Sync Maintenance
       db.ref('maintenance').on('value', (snapshot) => {
         maintenanceRequests = snapshot.val() || {};
         renderMaintenanceTable();
       });
 
-      // 4. Sync Checklist
       db.ref('checklists').on('value', (snapshot) => {
         checklists = snapshot.val() || {};
         renderChecklistTable(checklists); 
       });
 
-      // Refresh Auto-Login
       if (currentUser) {
         showDashboard(currentUser);
       }
@@ -758,18 +730,48 @@
       }
     }
 
-    // --- AUTHENTICATION & FORGOT PASSWORD ---
+    // 💥 REVISED ROBUST AUTHENTICATION & FORGOT PASSWORD LOGIC 💥
     function toggleAuthMode(mode) {
-      document.getElementById('login-card').classList.add('hidden');
-      document.getElementById('register-card').classList.add('hidden');
-      document.getElementById('forgot-card').classList.add('hidden');
+      const loginCard = document.getElementById('login-card');
+      const regCard = document.getElementById('register-card');
+      const forgotCard = document.getElementById('forgot-card');
 
-      if (mode === 'register') {
-        document.getElementById('register-card').classList.remove('hidden');
-      } else if (mode === 'forgot') {
-        document.getElementById('forgot-card').classList.remove('hidden');
+      if(loginCard) loginCard.classList.add('hidden');
+      if(regCard) regCard.classList.add('hidden');
+      if(forgotCard) forgotCard.classList.add('hidden');
+
+      if (mode === 'register' && regCard) {
+        regCard.classList.remove('hidden');
+      } else if (mode === 'forgot' && forgotCard) {
+        forgotCard.classList.remove('hidden');
+      } else if (loginCard) {
+        loginCard.classList.remove('hidden');
+      }
+    }
+
+    function handleForgotPassword(e) {
+      e.preventDefault();
+      
+      // Allow time for Firebase to load the users list
+      if (!users || Object.keys(users).length === 0) {
+          alert("System is still connecting to the database. Please try again in a few seconds.");
+          return;
+      }
+
+      const emailInput = document.getElementById('forgot-email');
+      if(!emailInput) return;
+      
+      const targetEmail = emailInput.value.trim().toLowerCase();
+
+      // Find user (Case Insensitive)
+      const foundUser = Object.values(users).find(u => u.email && u.email.trim().toLowerCase() === targetEmail);
+
+      if (foundUser) {
+        alert(`Your password is: ${foundUser.password}\n\n(Note: Keep your password safe!)`);
+        emailInput.value = ''; // Reset Form
+        toggleAuthMode('login');
       } else {
-        document.getElementById('login-card').classList.remove('hidden');
+        alert("Sorry, this Email Address is not registered in the system!");
       }
     }
 
@@ -779,7 +781,7 @@
       const email = document.getElementById('reg-email').value;
       const password = document.getElementById('reg-password').value;
 
-      const userExists = Object.values(users).some(u => u.email === email);
+      const userExists = Object.values(users).some(u => u.email && u.email.toLowerCase() === email.toLowerCase());
       if (userExists) {
         alert("User with this email already exists!");
         return;
@@ -792,10 +794,10 @@
 
     function handleLogin(e) {
       e.preventDefault();
-      const email = document.getElementById('login-email').value.trim();
+      const email = document.getElementById('login-email').value.trim().toLowerCase();
       const pwd = document.getElementById('login-password').value.trim();
 
-      const foundUser = Object.values(users).find(u => u.email === email && u.password === pwd);
+      const foundUser = Object.values(users).find(u => u.email && u.email.toLowerCase() === email && u.password === pwd);
 
       if (foundUser) {
         currentUser = foundUser;
@@ -803,20 +805,6 @@
         showDashboard(currentUser);
       } else {
         alert("Invalid Email or Password!");
-      }
-    }
-
-    function handleForgotPassword(e) {
-      e.preventDefault();
-      const email = document.getElementById('forgot-email').value.trim();
-      const foundUser = Object.values(users).find(u => u.email === email);
-
-      if (foundUser) {
-        // Prototype only: Showing password directly in alert box
-        alert(`Your password is: ${foundUser.password}\n\n(Note: For security in production, this should be sent via Email)`);
-        toggleAuthMode('login');
-      } else {
-        alert("Email not found in the system!");
       }
     }
 
